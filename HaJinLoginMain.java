@@ -1,4 +1,5 @@
-package yg;
+package yyg;
+
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -106,20 +107,20 @@ public class HaJinLoginMain extends JPanel implements ActionListener {
 
 	public static void main(String[] args) {
 		
-//		new HaJinLoginMain("ë©”ì¸ë¡œê·¸ì¸ ");
+//		new HaJinLoginMain("¸ŞÀÎ·Î±×ÀÎ ");
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object o = e.getSource();
-		if (o == btns[0]) {//ë§ˆì´í˜ì´ì§€
+		if (o == btns[0]) {//¸¶ÀÌÆäÀÌÁö
 
 			
 		}
-		if (o == btns[1]) {//ë¡œê·¸ì•„ì›ƒ
+		if (o == btns[1]) {//·Î±×¾Æ¿ô
 
 		}
-		if (o == btns[2]) {//í™ˆìœ¼ë¡œ
+		if (o == btns[2]) {//È¨À¸·Î
 			
 		}
 		

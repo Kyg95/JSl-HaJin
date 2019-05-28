@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="loginmapper">
+	<select id="selectOutputs" resultType="yyg.Outputs">
+		select * from outputs
+	</select>
+	<insert id="insertCustomer" parameterType="yyg.Customer_info">
+		insert into
+		customer_info
+		values(#{cust_id},#{cust_name},#{cust_addr},#{cust_reg_date})
+	</insert>
+	<select id="selectCustomer" parameterType="String"
+		resultType="yyg.Customer_info">
+		select * from customer_info where cust_id = #{id}
+	</select>

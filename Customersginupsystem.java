@@ -1,4 +1,4 @@
-package yg;
+package yyg;
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -11,6 +11,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -39,34 +40,34 @@ public class Customersginupsystem extends JPanel implements ActionListener {
 		for (int i = 0; i < inputs.length; i++) {
 			inputs[i] = new JTextField(10);
 		}
-		String[] label_name = { "ID", "ë¹„ë°€ë²ˆí˜¸", "ì´ë¦„", "E-mail", "ì—°ë½ì²˜", "ì„±ë³„" };// ê¸°ì´ˆì •ë³´
+		String[] label_name = { "ID", "ºñ¹Ð¹øÈ£", "ÀÌ¸§", "E-mail", "¿¬¶ôÃ³", "¼ºº°" };// ±âÃÊÁ¤º¸
 		label = new JLabel[6];
 		for (int i = 0; i < label.length; i++) {
 			label[i] = new JLabel(label_name[i]);
 			panel[i].add(label[i]);
 		}
-		String[] label_name1 = {"*","*","*","@","*","*í•„ìˆ˜"};
+		String[] label_name1 = {"*","*","*","@","*","*ÇÊ¼ö"};
 		labels = new JLabel[6];
 		for (int i = 0; i < labels.length; i++) {
 			labels[i] = new JLabel(label_name1[i]);
 		}
 		String[] label_name2 = {"","","","","",""};
-		labelss = new JLabel[6]; //ê³µê°„ì±„ìš°ê¸° ë¼ë²¨
+		labelss = new JLabel[6]; //°ø°£Ã¤¿ì±â ¶óº§
 		for (int i = 0; i < labels.length; i++) {
 			labelss[i] = new JLabel(label_name2[i]);
 		}
 			
-		String[] btnstitle = { "ì¤‘ë³µí™•ì¸", "ê°€ìž…", "ì·¨ì†Œ" };
+		String[] btnstitle = { "Áßº¹È®ÀÎ", "°¡ÀÔ", "Ãë¼Ò" };
 		btns = new JButton[3];
 		for (int i = 0; i < btns.length; i++) {
 			btns[i] = new JButton(btnstitle[i]);
 			btns[i].addActionListener(this);
 		}
 		
-		group = new ButtonGroup();// ë¼ë””ì˜¤ë²„íŠ¼ì„ ìœ„í•œ ê·¸ë£¹ìƒì„±
-		gender = new JRadioButton[2]; // 2ë°°ì—´ìƒì„±
-		gender[0] = new JRadioButton("ë‚¨ì„±", true); // ê¸°ë³¸ì„ íƒ
-		gender[1] = new JRadioButton("ì—¬ì„±", false);
+		group = new ButtonGroup();// ¶óµð¿À¹öÆ°À» À§ÇÑ ±×·ì»ý¼º
+		gender = new JRadioButton[2]; // 2¹è¿­»ý¼º
+		gender[0] = new JRadioButton("³²¼º", true); // ±âº»¼±ÅÃ
+		gender[1] = new JRadioButton("¿©¼º", false);
 		group.add(gender[0]);
 		group.add(gender[1]);
 		combo = new JComboBox();
@@ -79,12 +80,12 @@ public class Customersginupsystem extends JPanel implements ActionListener {
 		
 		panel[0].add(labels[0]);panel[0].add(label[0]);
 		panel[0].add(inputs[0]);panel[0].add(labelss[0]);panel[0].add(btns[0]);// id
-		panel[1].add(labels[1]);panel[1].add(label[1]);panel[1].add(inputs[1]);// ë¹„ë°€ë²ˆí˜¸
-		panel[2].add(labels[2]);panel[2].add(label[2]);panel[2].add(inputs[2]);// ì´ë¦„
+		panel[1].add(labels[1]);panel[1].add(label[1]);panel[1].add(inputs[1]);// ºñ¹Ð¹øÈ£
+		panel[2].add(labels[2]);panel[2].add(label[2]);panel[2].add(inputs[2]);// ÀÌ¸§
 		panel[3].add(label[3]); panel[3].add(inputs[3]);panel[3].add(labels[3]);panel[3].add(inputs[4]);panel[3].add(combo1);// e-mail
-		panel[4].add(labels[4]);panel[4].add(label[4]);panel[4].add(combo);panel[4].add(inputs[5]);panel[4].add(inputs[6]);// ì—°ë½ì²˜
+		panel[4].add(labels[4]);panel[4].add(label[4]);panel[4].add(combo);panel[4].add(inputs[5]);panel[4].add(inputs[6]);// ¿¬¶ôÃ³
 		panel[5].add(labels[5]);
-		panel[6].add(label[5]);panel[6].add(gender[0]);panel[6].add(gender[1]);// ì„±ë³„
+		panel[6].add(label[5]);panel[6].add(gender[0]);panel[6].add(gender[1]);// ¼ºº°
 		panel[7].add(btns[1]); panel[7].add(btns[2]);
 		
 		for (int i = 0; i < panel.length - 1; i++) {
@@ -117,11 +118,29 @@ public class Customersginupsystem extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object o = e.getSource();
 		if (o == btns[0]) {
-			System.out.println("ì¤‘ë³µí™•ì¸ëˆ„ë¦„");
+			String id = inputs[0].getText();// ÀÔ·ÂÇÑ idºÒ·¯¿È
+			if (id == null) {
+				JOptionPane.showMessageDialog(hm, "°í°´ID°¡ Á¸ÀçÇÏÁö ¾Ê¾Æ¼­ ÀÛ¾÷À» ÁøÇàÇÒ ¼ö ¾ø½À´Ï´Ù.");
+			} else {
+				CRUDprocess crud = new CRUDprocess();
+				Customer_info ci = crud.selectCustomer(id);
+				if (ci == null) {
+					Customer_info cust = new Customer_info();
+					cust.setCustomer_id(id);
+					int r = crud.insertCustomer(cust);
+					if (r > 0) {
+						JOptionPane.showMessageDialog(hm, "°í°´Á¤º¸°¡ µî·ÏµÇ¾ú½À´Ï´Ù.");
+					} else {
+						JOptionPane.showMessageDialog(hm, "°í°´Á¤º¸ µî·Ï Áß ¹®Á¦°¡ ¹ß»ýÇß½À´Ï´Ù.");
+					}
+				} else {
+					JOptionPane.showMessageDialog(hm, "ÀÌ¹Ì µ¿ÀÏÇÑ ID°¡ Á¸ÀçÇÕ´Ï´Ù.");
+				}
+			}
 			
 		}
 		if (o == btns[1]) {
-			System.out.println("ê°€ìž…ëˆ„ë¦„");
+			System.out.println("°¡ÀÔ´©¸§");
 			
 		}
 		if (o == btns[2]) {

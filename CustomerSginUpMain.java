@@ -1,4 +1,4 @@
-package yg;
+package yyg;
 
 import java.awt.CardLayout;
 
@@ -19,7 +19,7 @@ public class CustomerSginUpMain extends JPanel {
 		card_pan = new JPanel(card);
 		tabs = new JTabbedPane();
 		pan1 = new Customersginupsystem(hm);
-		tabs.addTab("  íšŒ   ì›   ê°€   ì…   ", pan1);
+		tabs.addTab("  È¸   ¿ø   °¡   ÀÔ   ", pan1);
 		
 		this.add("Center", tabs);
 		

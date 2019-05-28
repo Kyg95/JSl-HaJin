@@ -1,4 +1,4 @@
-package yg;
+package yyg;
 
 
 import java.awt.CardLayout;
@@ -39,27 +39,27 @@ public class NcustomerSginUp extends JPanel implements ActionListener {
 		for (int i = 0; i < inputs.length; i++) {
 			inputs[i] = new JTextField(20);
 		}
-		String[] label_name = { "ì´ë¦„", "E-mail", "ì—°ë½ì²˜" };// ê¸°ì´ˆì •ë³´
+		String[] label_name = { "ÀÌ¸§", "E-mail", "¿¬¶ôÃ³" };// ±âÃÊÁ¤º¸
 		label = new JLabel[3];
 		for (int i = 0; i < label.length; i++) {
 			label[i] = new JLabel(label_name[i]);
 			panel[i].add(label[i]);
 		}
 
-		String[] btnstitle = { "ê°€ìž…", "ì·¨ì†Œ" };
+		String[] btnstitle = { "°¡ÀÔ", "Ãë¼Ò" };
 		btns = new JButton[2];
 		for (int i = 0; i < btns.length; i++) {
 			btns[i] = new JButton(btnstitle[i]);
 			btns[i].addActionListener(this);
 		}
 
-		panel[0].add(label[0]);// ì´ë¦„
+		panel[0].add(label[0]);// ÀÌ¸§
 		panel[0].add(inputs[0]);
 		panel[1].add(label[1]);// mail
 		panel[1].add(inputs[1]);
-		panel[2].add(label[2]);// ì—°ë½ì²˜
+		panel[2].add(label[2]);// ¿¬¶ôÃ³
 		panel[2].add(inputs[2]);
-		panel[3].add(btns[0]); //ë²„íŠ¼
+		panel[3].add(btns[0]); //¹öÆ°
 		panel[3].add(btns[1]);
 
 		for (int i = 0; i < panel.length; i++) {
@@ -89,11 +89,11 @@ public class NcustomerSginUp extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object o = e.getSource();
-		if (o == btns[0]) { //ê°€ìž…
+		if (o == btns[0]) { //°¡ÀÔ
 			
 			
 		}
-		if (o == btns[1]) { //ì·¨ì†Œ ë©”ì¸ìœ¼ë¡œ ëŒì•„ê°
+		if (o == btns[1]) { //Ãë¼Ò ¸ÞÀÎÀ¸·Î µ¹¾Æ°¨
 			hm.card.show(hm.totalpanel, "image");
 			hm.btnspanel.setVisible(true);
 		}

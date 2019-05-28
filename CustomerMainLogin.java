@@ -1,4 +1,5 @@
-package yg;
+package yyg;
+
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -26,8 +27,8 @@ public class CustomerMainLogin extends JPanel {
 		NcustomerSginUp = new NcustomerSginUp(hm,this);
 		pan1 = new CustomerLogin(hm,this,HaJinLoginMain); 
 		pan2 = new NcustomerMain(hm,this);
-		tabs.addTab("    íšŒ           ì›    ", pan1);
-		tabs.addTab("    ë¹„     íšŒ     ì›    ", pan2);
+		tabs.addTab("    È¸           ¿ø    ", pan1);
+		tabs.addTab("    ºñ     È¸     ¿ø    ", pan2);
 		card_pan.add(tabs,"tabs");
 		card_pan.add(CustomerSginUpMain,"CustomerSginUpMain");
 		card_pan.add(NcustomerSginUp,"NonSginUp");

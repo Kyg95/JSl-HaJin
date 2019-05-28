@@ -1,4 +1,4 @@
-package yg;
+package yyg;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -34,13 +34,13 @@ class BackgroundImage extends JPanel {
 	}
 }
 
-//ë©”ì¸ì— ì¶”ê°€í• ê±° ë¡œê·¸ì¸ë²„íŠ¼ì°½ ë¹„íšŒì›ì°½ë§Œ ì¶”ê°€í•˜ê¸°
+//¸ŞÀÎ¿¡ Ãß°¡ÇÒ°Å ·Î±×ÀÎ¹öÆ°Ã¢ ºñÈ¸¿øÃ¢¸¸ Ãß°¡ÇÏ±â
 public class HaJinmain extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		Object o = arg0.getSource();
-		if (o == btns[0]) {// íšŒì›ê°€ì…
+		if (o == btns[0]) {// È¸¿ø°¡ÀÔ
 			bgi.setVisible(false);
 //			this.remove(btnspanel);
 			btnspanel.setVisible(false);
@@ -51,7 +51,7 @@ public class HaJinmain extends JFrame implements ActionListener {
 			this.card.show(totalpanel, "sginUp");
 			
 		}
-		if (o == btns[1]) {// ë¡œê·¸ì¸
+		if (o == btns[1]) {// ·Î±×ÀÎ
 			this.remove(bgi);
 			btnspanel.setVisible(false);
 			CustomerMainLogin = new CustomerMainLogin(this);
@@ -59,13 +59,13 @@ public class HaJinmain extends JFrame implements ActionListener {
 			this.card.show(totalpanel, "login");
 		}
 		if (o == item_exhibition) {
-			System.out.println("ì´ì „ì „ì‹œë¥¼ ëˆ„ë¦„");
+			System.out.println("ÀÌÀüÀü½Ã¸¦ ´©¸§");
 		}
 		if (o == item_exhibition1) {
-			System.out.println("í˜„ì¬ì „ì‹œë¥¼ ëˆ„ë¦„");
+			System.out.println("ÇöÀçÀü½Ã¸¦ ´©¸§");
 		}
 		if (o == item_exhibition2) {
-			System.out.println("ì˜ˆì •ì „ì‹œë¥¼ ëˆ„ë¦„");
+			System.out.println("¿¹Á¤Àü½Ã¸¦ ´©¸§");
 		}
 		if (o == item_goodies) {
 			
@@ -79,7 +79,7 @@ public class HaJinmain extends JFrame implements ActionListener {
 	}
 
 	public JButton[] btns;
-	public String titles[] = { "        íšŒì›ê°€ì…            "    ,    "         ë¡œê·¸ì¸            " };
+	public String titles[] = { "        È¸¿ø°¡ÀÔ            "    ,    "         ·Î±×ÀÎ            " };
 
 	void makebtns() {
 		btns = new JButton[2];
@@ -112,21 +112,21 @@ public class HaJinmain extends JFrame implements ActionListener {
 	HaJinmain(String str) {
 		super(str);
 		makebtns();
-		menufont = new Font("êµ´ë¦¼ì²´", Font.PLAIN, 15);
+		menufont = new Font("±¼¸²Ã¼", Font.PLAIN, 15);
 		this.setLayout(new BorderLayout());
 		mb = new JMenuBar();
 		hajinloginmain = new HaJinLoginMain(this);
-		menu_exhibition = new JMenu("                         ì „ì‹œ                                      ");
-		menu_goodies = new JMenu("                            êµ¿ì¦ˆ                                       ");
-		menu_program = new JMenu("                            í”„ë¡œê·¸ë¨                                   ");
-		menu_event = new JMenu("                              ì´ë²¤íŠ¸                                        ");
+		menu_exhibition = new JMenu("                         Àü½Ã                                      ");
+		menu_goodies = new JMenu("                            ±ÂÁî                                       ");
+		menu_program = new JMenu("                            ÇÁ·Î±×·¥                                   ");
+		menu_event = new JMenu("                              ÀÌº¥Æ®                                        ");
 		
-		item_exhibition = new JMenuItem("                  ì´ì „ ì „ì‹œ                             ");
-		item_exhibition1 = new JMenuItem("                  í˜„ì¬ ì „ì‹œ                             ");
-		item_exhibition2 = new JMenuItem("                  ì˜ˆì • ì „ì‹œ                             ");
-		item_goodies = new JMenuItem("                      êµ¿ì¦ˆ                                   ");
-		item_program = new JMenuItem("                      í”„ë¡œê·¸ë¨                              ");
-		item_event = new JMenuItem("                        ì´ë²¤íŠ¸                               ");
+		item_exhibition = new JMenuItem("                  ÀÌÀü Àü½Ã                             ");
+		item_exhibition1 = new JMenuItem("                  ÇöÀç Àü½Ã                             ");
+		item_exhibition2 = new JMenuItem("                  ¿¹Á¤ Àü½Ã                             ");
+		item_goodies = new JMenuItem("                      ±ÂÁî                                   ");
+		item_program = new JMenuItem("                      ÇÁ·Î±×·¥                              ");
+		item_event = new JMenuItem("                        ÀÌº¥Æ®                               ");
 		
 		item_exhibition.setFont(menufont);
 		item_exhibition1.setFont(menufont);
@@ -160,7 +160,7 @@ public class HaJinmain extends JFrame implements ActionListener {
 		mb.add(menu_event);
 		
 		this.setJMenuBar(mb);
-		// ë©”ë‰´ ê´€ë ¨ ì‘ì—… ë
+		// ¸Ş´º °ü·Ã ÀÛ¾÷ ³¡
 		card = new CardLayout();
 		totalpanel = new Panel(); 
 		totalpanel.setLayout(card);
@@ -184,6 +184,6 @@ public class HaJinmain extends JFrame implements ActionListener {
 	}
 
 	public static void main(String[] args) {
-		new HaJinmain("í•˜ì§„ë¯¸ìˆ ê´€ ë©”ì¸");
+		new HaJinmain("ÇÏÁø¹Ì¼ú°ü ¸ŞÀÎ");
 	}
 }

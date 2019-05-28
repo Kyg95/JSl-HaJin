@@ -1,4 +1,4 @@
-package yg;
+package yyg;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -44,7 +44,7 @@ public class CustomerLogin extends JPanel implements ActionListener {
 		for (int i = 0; i < text.length; i++) {
 			text[i] = new JTextField(15);
 		}
-		String[] btnstitle = { "   ë¡œ   ê·¸    ì¸     ", "  íšŒ   ì›   ê°€   ìž…     " };
+		String[] btnstitle = { "   ·Î   ±×    ÀÎ     ", "  È¸   ¿ø   °¡   ÀÔ     " };
 		btns = new JButton[2];
 		for (int i = 0; i < btns.length; i++) {
 			btns[i] = new JButton(btnstitle[i]);
@@ -95,12 +95,12 @@ public class CustomerLogin extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		Object o = arg0.getSource();
-		if (o == btns[0]) {// ë¡œê·¸ì¸
+		if (o == btns[0]) {// ·Î±×ÀÎ
 			//MainLogin.card.show(MainLogin.card_pan, "HaJinLoginMain");
 			hm.card.show(hm.totalpanel,"loginmain");
 		}
 		
-		if (o == btns[1]) {// íšŒì›ê°€ìž…
+		if (o == btns[1]) {// È¸¿ø°¡ÀÔ
 			CustomerMainLogin.card.show(CustomerMainLogin.card_pan, "CustomerSginUpMain");
 		}
 
