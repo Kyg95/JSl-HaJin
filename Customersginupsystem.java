@@ -117,26 +117,26 @@ public class Customersginupsystem extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object o = e.getSource();
-		if (o == btns[0]) {
-			String id = inputs[0].getText();// 입력한 id불러옴
-			if (id == null) {
-				JOptionPane.showMessageDialog(hm, "고객ID가 존재하지 않아서 작업을 진행할 수 없습니다.");
-			} else {
-				CRUDprocess crud = new CRUDprocess();
-				Customer_info ci = crud.selectCustomer(id);
-				if (ci == null) {
-					Customer_info cust = new Customer_info();
-					cust.setCustomer_id(id);
-					int r = crud.insertCustomer(cust);
-					if (r > 0) {
-						JOptionPane.showMessageDialog(hm, "고객정보가 등록되었습니다.");
-					} else {
-						JOptionPane.showMessageDialog(hm, "고객정보 등록 중 문제가 발생했습니다.");
-					}
-				} else {
-					JOptionPane.showMessageDialog(hm, "이미 동일한 ID가 존재합니다.");
-				}
-			}
+		if (o == btns[0]) { //중복확인
+//			String id = inputs[0].getText();// 입력한 id불러옴
+//			if (id == null) {
+//				JOptionPane.showMessageDialog(hm, "고객ID가 존재하지 않아서 작업을 진행할 수 없습니다.");
+//			} else {
+//				CRUDprocess crud = new CRUDprocess();
+//				Customer_info ci = crud.selectIdAndPwd(ci);
+//				if (ci == null) {
+//					Customer_info cust = new Customer_info();
+//					cust.setCustomer_id(id);
+//					int r = crud.selectIdAndPwd(cust);
+//					if (r > 0) {
+//						JOptionPane.showMessageDialog(hm, "고객정보가 등록되었습니다.");
+//					} else {
+//						JOptionPane.showMessageDialog(hm, "고객정보 등록 중 문제가 발생했습니다.");
+//					}
+//				} else {
+//					JOptionPane.showMessageDialog(hm, "이미 동일한 ID가 존재합니다.");
+//				}
+//			}
 			
 		}
 		if (o == btns[1]) {

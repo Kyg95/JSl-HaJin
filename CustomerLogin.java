@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
@@ -21,7 +22,7 @@ public class CustomerLogin extends JPanel implements ActionListener {
 	HaJinLoginMain HaJinLoginMain;
 	HaJinmain hm;
 	Customersginupsystem Customersginupsystem;
-	CustomerMainLogin CustomerMainLogin;
+	CustomerMainLogin cml;
 	CardLayout card;
 	Panel totalpanel, southpanel;
 	JPanel[] panel;
@@ -74,13 +75,14 @@ public class CustomerLogin extends JPanel implements ActionListener {
 		panel[7].setBackground(new Color(153, 255, 255));
 	}
 
-	CustomerLogin(HaJinmain hm, CustomerMainLogin CustomerMainLogin, HaJinLoginMain HaJinLoginMain) {
+	public CustomerLogin(HaJinmain hm, CustomerMainLogin cm, HaJinLoginMain HaJinLoginMain) {
+		cml = cm;
 		this.hm = hm;
 		this.HaJinLoginMain = HaJinLoginMain;
 		card = new CardLayout();
 		totalpanel = new Panel();
 		southpanel = new Panel();
-		this.CustomerMainLogin = CustomerMainLogin;
+		this.cml = cm;
 		Customersginupsystem = new Customersginupsystem(hm);
 		CustomerSginUpMain = new CustomerSginUpMain(hm);
 		southpanel.setLayout(card);
@@ -96,12 +98,33 @@ public class CustomerLogin extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		Object o = arg0.getSource();
 		if (o == btns[0]) {// 로그인
-			//MainLogin.card.show(MainLogin.card_pan, "HaJinLoginMain");
-			hm.card.show(hm.totalpanel,"loginmain");
+			 //DB에 접속한 후 manager_info 테이블에서 계정과 암호를 찾는다
+			//찾은 계정과 암호를 비교한다.
+			String id = this.text[0].getText();//입력한 id를 id에 찾아서 저장
+			String pwd = this.text[1].getText();//입력한 pwd를 pwd에 찾아서 저장	
+			Customer_info idpwd = new Customer_info();
+			idpwd.setCustomer_id(id); idpwd.setCustomer_pwd(pwd);	
+			CRUDprocess crud = new CRUDprocess();
+			Customer_info info = crud.selectIdPwd(idpwd);
+			
+			if(info == null) {//로그인 실패
+				JOptionPane.showMessageDialog(hm, "ID와 PWD를 확인하세요");
+			}else {
+				JOptionPane.showMessageDialog(hm, "로그인 되었습니다.");
+				//메뉴를 활성화 시켜야한다.
+				hm.menu_exhibition.setEnabled(true);//메뉴바 활성화
+				hm.menu_goodies.setEnabled(true);//메뉴바 활성화
+				hm.menu_program.setEnabled(true);
+				hm.menu_event.setEnabled(true);
+				hm.card.show(hm.totalpanel, "background");
+			}
+			
+//			hm.card.show(hm.totalpanel,"loginmain");
 		}
+
 		
 		if (o == btns[1]) {// 회원가입
-			CustomerMainLogin.card.show(CustomerMainLogin.card_pan, "CustomerSginUpMain");
+			cml.card.show(cml.card_pan, "CustomerSginUpMain");
 		}
 
 	}

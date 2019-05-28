@@ -142,10 +142,10 @@ public class HaJinmain extends JFrame implements ActionListener {
 		item_program.addActionListener(this);
 		item_event.addActionListener(this);
 		
-		menu_exhibition.setEnabled(true);
-		menu_goodies.setEnabled(true);
-		menu_program.setEnabled(true);
-		menu_event.setEnabled(true);
+		menu_exhibition.setEnabled(false);
+		menu_goodies.setEnabled(false);
+		menu_program.setEnabled(false);
+		menu_event.setEnabled(false);
 		
 		menu_exhibition.add(item_exhibition);
 		menu_exhibition.add(item_exhibition1);
