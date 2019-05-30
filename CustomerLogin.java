@@ -32,6 +32,7 @@ public class CustomerLogin extends JPanel implements ActionListener {
 	JButton[] btns;
 
 	void make() {
+		
 		panel = new JPanel[9];
 		for (int i = 0; i < panel.length; i++) {
 			panel[i] = new JPanel();
@@ -78,6 +79,7 @@ public class CustomerLogin extends JPanel implements ActionListener {
 	public CustomerLogin(HaJinmain hm, CustomerMainLogin cm, HaJinLoginMain HaJinLoginMain) {
 		cml = cm;
 		this.hm = hm;
+		
 		this.HaJinLoginMain = HaJinLoginMain;
 		card = new CardLayout();
 		totalpanel = new Panel();
@@ -98,12 +100,10 @@ public class CustomerLogin extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		Object o = arg0.getSource();
 		if (o == btns[0]) {// 로그인
-			 //DB에 접속한 후 manager_info 테이블에서 계정과 암호를 찾는다
-			//찾은 계정과 암호를 비교한다.
 			String id = this.text[0].getText();//입력한 id를 id에 찾아서 저장
 			String pwd = this.text[1].getText();//입력한 pwd를 pwd에 찾아서 저장	
-			Customer_info idpwd = new Customer_info();
-			idpwd.setCustomer_id(id); idpwd.setCustomer_pwd(pwd);	
+			UserIdPwd idpwd = new UserIdPwd();
+			idpwd.setId(id); idpwd.setPwd(pwd);	
 			CRUDprocess crud = new CRUDprocess();
 			Customer_info info = crud.selectIdPwd(idpwd);
 			
@@ -111,18 +111,16 @@ public class CustomerLogin extends JPanel implements ActionListener {
 				JOptionPane.showMessageDialog(hm, "ID와 PWD를 확인하세요");
 			}else {
 				JOptionPane.showMessageDialog(hm, "로그인 되었습니다.");
-				//메뉴를 활성화 시켜야한다.
+				hm.card.show(hm.totalpanel, "loginmain");
 				hm.menu_exhibition.setEnabled(true);//메뉴바 활성화
 				hm.menu_goodies.setEnabled(true);//메뉴바 활성화
 				hm.menu_program.setEnabled(true);
 				hm.menu_event.setEnabled(true);
-				hm.card.show(hm.totalpanel, "background");
+				
 			}
 			
-//			hm.card.show(hm.totalpanel,"loginmain");
 		}
 
-		
 		if (o == btns[1]) {// 회원가입
 			cml.card.show(cml.card_pan, "CustomerSginUpMain");
 		}

@@ -6,10 +6,9 @@ public class Customer_info {
 	private String customer_id;
 	private String customer_name;
 	private String customer_pwd;
-	private String customer_gen;
+	private String customer_gender;
 	private String customer_email;
 	private int customer_phone;
-	private int customer_age;
 	
 	
 	public String getCustomer_id() {
@@ -30,11 +29,11 @@ public class Customer_info {
 	public void setCustomer_pwd(String customer_pwd) {
 		this.customer_pwd = customer_pwd;
 	}
-	public String getCustomer_gen() {
-		return customer_gen;
+	public String getCustomer_gender() {
+		return customer_gender;
 	}
-	public void setCustomer_gen(String customer_gen) {
-		this.customer_gen = customer_gen;
+	public void setCustomer_gen(String customer_gender) {
+		this.customer_gender = customer_gender;
 	}
 	public String getCustomer_email() {
 		return customer_email;
@@ -47,11 +46,5 @@ public class Customer_info {
 	}
 	public void setCustomer_phone(int customer_phone) {
 		this.customer_phone = customer_phone;
-	}
-	public int getCustomer_age() {
-		return customer_age;
-	}
-	public void setCustomer_age(int customer_age) {
-		this.customer_age = customer_age;
 	}
 }

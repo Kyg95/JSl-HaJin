@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -89,10 +90,24 @@ public class NcustomerSginUp extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object o = e.getSource();
+		CRUDprocess crud = new CRUDprocess();
 		if (o == btns[0]) { //가입
+			String ncustomer_name = 
+			String ncustomer_email = 
+			int ncustomer_phone = Integer.valueOf((inputs[5].getText() + inputs[6].getText()));
 			
-			
+			NCustomer_info cust = new NCustomer_info();
+			cust.setNcustomer_name(ncustomer_name);
+			cust.setNcustomer_email(ncustomer_email);
+			cust.setNcustomer_phone(ncustomer_phone);
+			int r = crud.insertNCustomer(cust);
+			if (r > 0) {
+				JOptionPane.showMessageDialog(hm, "고객정보가 등록되었습니다.");
+			} else {
+				JOptionPane.showMessageDialog(hm, "고객정보 등록 중 문제가 발생했습니다.");
+			}
 		}
+			
 		if (o == btns[1]) { //취소 메인으로 돌아감
 			hm.card.show(hm.totalpanel, "image");
 			hm.btnspanel.setVisible(true);

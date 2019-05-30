@@ -7,7 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-
 public class CRUDprocess {
 	// 이 클래스의 목적 : MyBatis의 매퍼를 호출한다.
 	// 무슨일을 하나? 1. mybatis환경설정을 읽는다
@@ -29,35 +28,65 @@ public class CRUDprocess {
 		return session;
 	}
 
-//	public Customer_info selectCustomer(String id) {
-//		SqlSession s = getSession();
-//		Customer_info cust;
-//		try {
-//			cust = s.selectOne("loginmapper.selectCustomer", id);
-//			return cust;
-//		} finally {
-//			s.close();
-//		}
-//	}
-//
-//	public int insertCustomer(Customer_info customer) {
-//		SqlSession s = getSession();
-//		int result = 0;
-//		try {
-//			result = s.insert("loginmapper.insertCustomer", customer);
-//			if (result > 0)
-//				s.commit();
-//			else
-//				s.rollback();
-//			return result;
-//		} finally {
-//			s.close();
-//		}
-//	}
-	public Customer_info selectIdPwd(Customer_info ci) { // 다른곳에서 사용해야하기떄문에 public 를 사용
+	public Customer_info selectCustomer(String id) {
+		SqlSession s = getSession();
+		Customer_info cust;
+		try {
+			cust = s.selectOne("loginmapper.selectCustomer", id);
+			return cust;
+		} finally {
+			s.close();
+		}
+	}
+	
+	public int insertCustomer(Customer_info customer) {
+		SqlSession s = getSession();
+		int result = 0;
+		try {
+			result = s.insert("loginmapper.insertCustomer", customer);
+			if (result > 0)
+				s.commit();
+			else
+				s.rollback();
+			return result;
+		} finally {
+			s.close();
+		}
+	}
+	public int insertNCustomer(NCustomer_info ncustomer) {
+		SqlSession s = getSession();
+		int result = 0;
+		try {
+			result = s.insert("loginmapper.insertCustomer", ncustomer);
+			if (result > 0)
+				s.commit();
+			else
+				s.rollback();
+			return result;
+		} finally {
+			s.close();
+		}
+	}
+	
+	public Customer_info selectId(String id) { // 다른곳에서 사용해야하기떄문에 public 를 사용
 		SqlSession s = getSession();
 		try {
-			Customer_info info = s.selectOne("loginmapper.selectIdPwd", ci); // 매퍼의 쿼리 이름을 씀
+			Customer_info info = s.selectOne("loginmapper.selectId", id); // 매퍼의 쿼리 이름을 씀
+			// selectone는 검색결과가 1건일 때만 사용하는 메서드
+			// selectList는 검색결과가 여러건에 사용하는 메서드
+			return info;
+		} finally { // 예외가 발생하던 하지않던 무조건 실행함
+			s.close();// 완료될경우 닫는다
+
+		} // DB의 manager_info 테이블의 id와 암호를 찾아서 리턴
+	}
+
+	
+	
+	public Customer_info selectIdPwd(UserIdPwd idpwd) { // 다른곳에서 사용해야하기떄문에 public 를 사용
+		SqlSession s = getSession();
+		try {
+			Customer_info info = s.selectOne("loginmapper.selectIdPwd", idpwd); // 매퍼의 쿼리 이름을 씀
 			// selectone는 검색결과가 1건일 때만 사용하는 메서드
 			// selectList는 검색결과가 여러건에 사용하는 메서드
 			return info;

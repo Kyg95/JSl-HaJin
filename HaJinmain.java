@@ -50,30 +50,30 @@ public class HaJinmain extends JFrame implements ActionListener {
 			//this.add("Center", totalpanel);
 			this.card.show(totalpanel, "sginUp");
 			
-		}
-		if (o == btns[1]) {// 로그인
+		}else if (o == btns[1]) {// 로그인
 			this.remove(bgi);
 			btnspanel.setVisible(false);
 			CustomerMainLogin = new CustomerMainLogin(this);
 			totalpanel.add(CustomerMainLogin,"login");
 			this.card.show(totalpanel, "login");
 		}
-		if (o == item_exhibition) {
+		else if (o == item_exhibition) {
 			System.out.println("이전전시를 누름");
 		}
-		if (o == item_exhibition1) {
-			System.out.println("현재전시를 누름");
+		else if (o == item_exhibition1) {
+			this.btnspanel.setVisible(false);
+			this.card.show(totalpanel, "Reserve_day");
 		}
-		if (o == item_exhibition2) {
+		else if (o == item_exhibition2) {
 			System.out.println("예정전시를 누름");
 		}
-		if (o == item_goodies) {
+		else if (o == item_goodies) {
 			
 		}
-		if (o == item_program) {
+		else if (o == item_program) {
 			
 		}
-		if (o == item_event) {
+		else if (o == item_event) {
 			
 		}
 	}
@@ -101,6 +101,7 @@ public class HaJinmain extends JFrame implements ActionListener {
 	CustomerSginUpMain CustomerSginUpMain;
 	Customersginupsystem Customersginupsystem;
 	CustomerMainLogin CustomerMainLogin;
+	Reserve_day rd;
 	Font menufont;
 	JMenuBar mb;
 	JMenu menu_exhibition, menu_goodies, menu_program, menu_event;
@@ -161,6 +162,7 @@ public class HaJinmain extends JFrame implements ActionListener {
 		
 		this.setJMenuBar(mb);
 		// 메뉴 관련 작업 끝
+		rd = new Reserve_day();
 		card = new CardLayout();
 		totalpanel = new Panel(); 
 		totalpanel.setLayout(card);
@@ -176,6 +178,7 @@ public class HaJinmain extends JFrame implements ActionListener {
 		bgi = new BackgroundImage();
 		totalpanel.add(bgi, "image");
 		totalpanel.add(hajinloginmain,"loginmain");
+		totalpanel.add(rd, "Reserve_day");
 		this.add("Center", totalpanel);
 		this.add("South", btnspanel);
 		this.setSize(1000, 500);

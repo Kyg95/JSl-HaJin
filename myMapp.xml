@@ -2,12 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="loginmapper">
-	<!-- <insert id="insertCustomer" parameterType="yyg.Customer_info"> insert 
-		into customer_info values(#{customer_id},#{customer_name},#{customer_pwd},#{customer_gender} 
-		,#{customer_email},#{customer_phone},#{customer_age}) </insert> <select id="selectCustomer" 
-		parameterType="String" resultType="yyg.Customer_info"> select * from customer_info 
-		where customer_id = #{id} </select> -->
-	<select id="selectIdPwd" parameterType="yyg.Customer_info"
+	<insert id="insertNCustomer" parameterType="yyg.NCustomer_info">
+		insert into ncustomer_info
+		values(#{ncustomer_name},#{ncustomer_email},#{ncustomer_phone})
+	</insert>
+	<insert id="insertCustomer" parameterType="yyg.Customer_info">
+		insert into customer_info
+		values(#{customer_id},#{customer_name},#{customer_pwd},#{customer_gender}
+		,#{customer_email},#{customer_phone})
+	</insert>
+
+	<select id="selectCustomerInfo" parameterType="String"
+		resultType="yyg.Customer_info">
+		select * from customer_info where customer_id =
+		#{customer_id}
+	</select>
+
+	<select id="selectId" parameterType="yyg.UserId"
+		resultType="yyg.Customer_info">
+		select * from customer_info where customer_id =#{id}
+	</select>
+	<select id="selectIdPwd" parameterType="yyg.UserIdPwd"
 		resultType="yyg.Customer_info">
 		select * from customer_info
 		where customer_id = #{id} and
