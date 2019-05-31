@@ -70,8 +70,9 @@ public class CRUDprocess {
 	
 	public Customer_info selectId(String id) { // 다른곳에서 사용해야하기떄문에 public 를 사용
 		SqlSession s = getSession();
+		Customer_info info= null;
 		try {
-			Customer_info info = s.selectOne("loginmapper.selectId", id); // 매퍼의 쿼리 이름을 씀
+			info = s.selectOne("loginmapper.selectId", id); // 매퍼의 쿼리 이름을 씀
 			// selectone는 검색결과가 1건일 때만 사용하는 메서드
 			// selectList는 검색결과가 여러건에 사용하는 메서드
 			return info;

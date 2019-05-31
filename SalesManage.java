@@ -31,7 +31,7 @@ public class SalesManage extends JPanel implements ActionListener {
 
 		this.setLayout(new BorderLayout());
 		btn = new JButton("Á¶È¸");
-		btn.setPreferredSize(new Dimension(200, 30));
+		btn.setPreferredSize(new Dimension(100, 30));
 		btn.addActionListener(this);
 		panels = new JPanel[2];
 		panels[0] = new JPanel();
@@ -42,6 +42,7 @@ public class SalesManage extends JPanel implements ActionListener {
 		this.add("Center", gp);
 		this.add("South", panels[1]);
 		this.setBackground(new Color(64, 228, 208));
+		this.setPreferredSize(new Dimension(600,500));
 	}
 
 	@Override

@@ -26,7 +26,7 @@
 		#{customer_id}
 	</select>
 
-	<select id="selectId" parameterType="yyg.UserId"
+	<select id="selectId" parameterType="String"
 		resultType="yyg.Customer_info">
 		select * from customer_info where customer_id =#{id}
 	</select>

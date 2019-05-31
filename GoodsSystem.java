@@ -2,6 +2,7 @@ package yyg;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -176,6 +177,7 @@ public class GoodsSystem extends JPanel {
       //this.add(panel[0]); this.add(panel[1]);
 //      this.setSize(1000, 500);
 //      this.setVisible(true);
+       this.setPreferredSize(new Dimension(600,500));
    }
    public static void main(String[] args) {
 

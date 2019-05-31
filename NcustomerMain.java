@@ -62,7 +62,7 @@ public class NcustomerMain extends JPanel implements ActionListener {
 		panel[7].add(label[0]);
 		totalpanel.setLayout(new GridLayout(8, 1));
 		for (int i = 0; i < panel.length - 1; i++) {
-			panel[i].setBackground(new Color(199, 228, 248)); 
+			panel[i].setBackground(new Color(199, 228, 248));
 			totalpanel.add(panel[i]);
 		}
 	}
@@ -77,7 +77,7 @@ public class NcustomerMain extends JPanel implements ActionListener {
 		totalpanel.setLayout(card);
 		make();
 		this.add("Center", totalpanel);
-		this.setBackground(new Color(199, 228, 248)); 
+		this.setBackground(new Color(199, 228, 248));
 		this.setBounds(300, 300, 700, 600);
 	}
 
@@ -92,9 +92,13 @@ public class NcustomerMain extends JPanel implements ActionListener {
 			emph.setPhone(phone);
 			CRUDprocess crud = new CRUDprocess();
 			NCustomer_info info = crud.selectNUserIdPwd(emph);
-			if (info == null) {// 로그인 실패
-				JOptionPane.showMessageDialog(hm, "E-Mail와 Phone을 확인하세요");
-			} else {
+			if (email.equals("")) {// 로그인 실패
+				JOptionPane.showMessageDialog(hm, "E-Mail을 확인해주세요");
+			} else if(phone.equals("")){
+				JOptionPane.showMessageDialog(hm, "phone을 확인해주세요");
+			}else if(info == null) {
+				JOptionPane.showMessageDialog(hm, "존재하지 않는 회원입니다.");
+			}else if(!(info == null)) {
 				JOptionPane.showMessageDialog(hm, "로그인 되었습니다.");
 				hm.card.show(hm.totalpanel, "loginmain");
 				hm.menu_exhibition.setEnabled(true);
@@ -104,6 +108,7 @@ public class NcustomerMain extends JPanel implements ActionListener {
 				hm.card.show(hm.totalpanel, "loginmain");
 			}
 		}
+		
 
 		if (o == btns[1]) {
 			CustomerMainLogin.card.show(CustomerMainLogin.card_pan, "NonSginUp");

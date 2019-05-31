@@ -126,14 +126,16 @@ public class Customersginupsystem extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object o = e.getSource();
+		String id = inputs[0].getText();
 		CRUDprocess crud = new CRUDprocess();
+		
 		if (o == btns[0]) { // 중복확인
-			String id = inputs[0].getText();
+			
 			if (id.equals("")) {
 				JOptionPane.showMessageDialog(hm, "ID가 존재하지 않습니다.");
 			} else {
-				Customer_info ci = crud.selectId(id);
-				if (ci == null) {
+				Customer_info info = crud.selectId(id);
+				if (info == null) {
 					JOptionPane.showMessageDialog(hm, "사용 가능한 ID입니다.");
 				} else {
 					JOptionPane.showMessageDialog(hm, "중복 ID입니다.");
@@ -165,13 +167,14 @@ public class Customersginupsystem extends JPanel implements ActionListener {
 					customer_gender = "여성";
 				}
 				int customer_phone = Integer.valueOf(phone); 
+//				String customer_state = null;
 				Customer_info cust = new Customer_info();
 				cust.setCustomer_id(customer_id);
 				cust.setCustomer_pwd(customer_pwd);
 				cust.setCustomer_name(customer_name);
 				cust.setCustomer_email(customer_email);
 				cust.setCustomer_phone(customer_phone);
-				cust.setCustomer_gen(customer_gender);
+				cust.setCustomer_gender(customer_gender);
 				int r = crud.insertCustomer(cust);
 				if (r > 0) {
 					JOptionPane.showMessageDialog(hm, "고객정보가 등록되었습니다.");

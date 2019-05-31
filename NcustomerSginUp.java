@@ -94,26 +94,28 @@ public class NcustomerSginUp extends JPanel implements ActionListener {
 			if (!(ncustomer_name == null)) {
 				String ncustomer_email = inputs[1].getText();
 				String phone = (inputs[2].getText());
-				if(!(phone == null));
-				int ncustomer_phone = Integer.valueOf(phone);
-				NCustomer_info cust = new NCustomer_info();
-				cust.setNcustomer_name(ncustomer_name);
-				cust.setNcustomer_email(ncustomer_email);
-				cust.setNcustomer_phone(ncustomer_phone);
-				int r = crud.insertNCustomer(cust);
-				if (r > 0) {
-					JOptionPane.showMessageDialog(hm, "비회원 가입되었습니다.");
-				} else {
-					JOptionPane.showMessageDialog(hm, "비회원 가입 중 문제가 발생했습니다.");
+				if (phone.equals("")) {
+					JOptionPane.showMessageDialog(hm, "핸드폰 번호를 입력해주세요");
+				} else if (!(phone == null)) {
+					int ncustomer_phone = Integer.valueOf(phone);
+					NCustomer_info cust = new NCustomer_info();
+					cust.setNcustomer_name(ncustomer_name);
+					cust.setNcustomer_email(ncustomer_email);
+					cust.setNcustomer_phone(ncustomer_phone);
+					int r = crud.insertNCustomer(cust);
+					if (r > 0) {
+						JOptionPane.showMessageDialog(hm, "비회원 가입되었습니다.");
+					} else {
+						JOptionPane.showMessageDialog(hm, "비회원 가입 중 문제가 발생했습니다.");
+					}
+					hm.card.show(hm.totalpanel, "loginmain");
+					hm.menu_exhibition.setEnabled(true);// 메뉴바 활성화
+					hm.menu_goodies.setEnabled(false);// 메뉴바 활성화
+					hm.menu_program.setEnabled(false);
+					hm.menu_event.setEnabled(false);
 				}
 			}
 		}
-		hm.card.show(hm.totalpanel, "loginmain");
-		hm.menu_exhibition.setEnabled(true);// 메뉴바 활성화
-		hm.menu_goodies.setEnabled(false);// 메뉴바 활성화
-		hm.menu_program.setEnabled(false);
-		hm.menu_event.setEnabled(false);
-
 		if (o == btns[1]) { // 취소 메인으로 돌아감
 			hm.card.show(hm.totalpanel, "image");
 			hm.btnspanel.setVisible(true);

@@ -35,7 +35,6 @@ class BackgroundImage extends JPanel {
 	}
 }
 
-//메인에 추가할거 로그인버튼창 비회원창만 추가하기
 public class HaJinmain extends JFrame implements ActionListener {
 
 	@Override
@@ -97,14 +96,12 @@ public class HaJinmain extends JFrame implements ActionListener {
 
 	}
 
-
 	CardLayout card;
 	Panel totalpanel;
 	ManagerMode mm;
 	CustomerSginUpMain CustomerSginUpMain;
 	Customersginupsystem Customersginupsystem;
 	CustomerMainLogin CustomerMainLogin;
-	Reserve_day rd;
 	Font menufont;
 	JMenuBar mb;
 	JMenu menu_exhibition, menu_goodies, menu_program, menu_event;
@@ -158,6 +155,7 @@ public class HaJinmain extends JFrame implements ActionListener {
 		menu_program.add(item_program);
 		menu_event.add(item_event);
 		
+		
 		mb.add(menu_exhibition);
 		mb.add(menu_goodies);
 		mb.add(menu_program);
@@ -165,7 +163,6 @@ public class HaJinmain extends JFrame implements ActionListener {
 		
 		this.setJMenuBar(mb);
 		// 메뉴 관련 작업 끝
-		rd = new Reserve_day();
 		mm = new ManagerMode(this);
 		card = new CardLayout();
 		totalpanel = new Panel(); 
@@ -182,11 +179,10 @@ public class HaJinmain extends JFrame implements ActionListener {
 		bgi = new BackgroundImage();
 		totalpanel.add(bgi, "image");
 		totalpanel.add(hajinloginmain,"loginmain");
-		totalpanel.add(rd, "Reserve_day");
 		totalpanel.add(mm, "ManagerMode");
 		this.add("Center", totalpanel);
 		this.add("South", btnspanel);
-		this.setSize(1000, 500);
+		this.setSize(1000, 700);
 		this.setResizable(false);
 		this.setLocation(100, 0);
 		this.setVisible(true);

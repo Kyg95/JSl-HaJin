@@ -2,6 +2,7 @@ package yyg;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Dimension;
 import java.awt.FileDialog;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -153,6 +154,7 @@ public class Reserve extends JPanel {
 		this.setLayout(new BorderLayout());
 		this.add("Center", Reserve);
 		this.add("South", buttons);
+		this.setPreferredSize(new Dimension(600,500));
 
 	}
 

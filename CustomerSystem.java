@@ -275,6 +275,7 @@ public class CustomerSystem extends JPanel implements ActionListener , MouseList
 		}
 		this.add("Center", centerPanel);
 		this.add("South", southPanel);
+		this.setPreferredSize(new Dimension(500,500));
 	}
 
 	@Override

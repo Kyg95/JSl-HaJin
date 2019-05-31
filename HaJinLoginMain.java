@@ -52,10 +52,13 @@ public class HaJinLoginMain extends JPanel implements ActionListener {
 		if (o == btns[0]) {// 마이페이지 //아직
 		
 		}
-		if (o == btns[1]) {// 로그아웃 아직
+		if (o == btns[1]) {
 			JOptionPane.showMessageDialog(hm, "로그아웃 진행중입니다.");
 			hm.card.show(hm.totalpanel, "login");
-			hm.mb.setEnabled(false);
+			hm.menu_exhibition.setEnabled(false);
+			hm.menu_goodies.setEnabled(false);
+			hm.menu_program.setEnabled(false);
+			hm.menu_event.setEnabled(false);
 		}
 	}
 

@@ -9,8 +9,10 @@ public class Customer_info {
 	private String customer_gender;
 	private String customer_email;
 	private int customer_phone;
-	
-	
+
+	public void setCustomer_gender(String customer_gender) {
+		this.customer_gender = customer_gender;
+	}
 	public String getCustomer_id() {
 		return customer_id;
 	}
@@ -31,9 +33,6 @@ public class Customer_info {
 	}
 	public String getCustomer_gender() {
 		return customer_gender;
-	}
-	public void setCustomer_gen(String customer_gender) {
-		this.customer_gender = customer_gender;
 	}
 	public String getCustomer_email() {
 		return customer_email;

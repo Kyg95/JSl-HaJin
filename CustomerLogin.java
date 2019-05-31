@@ -22,7 +22,6 @@ import javax.swing.JTextField;
 
 public class CustomerLogin extends JPanel implements ActionListener {
 
-	
 	ManagerMode mm;
 	CustomerSginUpMain CustomerSginUpMain;
 	HaJinLoginMain HaJinLoginMain;
@@ -79,7 +78,7 @@ public class CustomerLogin extends JPanel implements ActionListener {
 		}
 	}
 
-	public CustomerLogin(HaJinmain hm, CustomerMainLogin cm, HaJinLoginMain HaJinLoginMain ,ManagerMode mm) {
+	public CustomerLogin(HaJinmain hm, CustomerMainLogin cm, HaJinLoginMain HaJinLoginMain, ManagerMode mm) {
 		cml = cm;
 		this.hm = hm;
 		this.mm = mm;
@@ -104,34 +103,36 @@ public class CustomerLogin extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		Object o = arg0.getSource();
 		if (o == btns[0]) {// 로그인
-			String id = this.text[0].getText();
-			if (id.equals("")) {// 로그인 실패
-				JOptionPane.showMessageDialog(hm, "ID와 PWD를 확인하세요");
-			}
-			String pwd = this.pw.getText();
 			CRUDprocess crud = new CRUDprocess();
 			UserIdPwd idpwd = new UserIdPwd();
+			String id = this.text[0].getText();
+			String pwd = this.pw.getText();
 			idpwd.setId(id);
 			idpwd.setPwd(pwd);
 			Customer_info info = crud.selectIdPwd(idpwd);
-			 if(id.equals("jjh")){
+			if (id.equals("")) {// 로그인 실패
+				JOptionPane.showMessageDialog(hm, "ID를 입력하세요");
+			}
+			if (pwd.equals("")) {
+				JOptionPane.showMessageDialog(hm, "PWD를 입력하세요");
+			}else if (info == null) {
+				JOptionPane.showMessageDialog(hm, "ID또는 PWD를 확인해주세요.");
+			}
+			if (id.equals("jjh")) {
 				JOptionPane.showMessageDialog(hm, "관리자 로그인 되었습니다.");
-				mm.card.show(mm.card_pan, "ManagerMode");
+				cml.card.show(cml.card_pan, "ManagerMode");
 				hm.menu_exhibition.setEnabled(true);// 메뉴바 활성화
 				hm.menu_goodies.setEnabled(true);// 메뉴바 활성화
 				hm.menu_program.setEnabled(true);
 				hm.menu_event.setEnabled(true);
-				
-			}else {
+			} else if (!(info == null)) {
 				JOptionPane.showMessageDialog(hm, "로그인 되었습니다.");
 				hm.card.show(hm.totalpanel, "loginmain");
 				hm.menu_exhibition.setEnabled(true);// 메뉴바 활성화
 				hm.menu_goodies.setEnabled(true);// 메뉴바 활성화
 				hm.menu_program.setEnabled(true);
 				hm.menu_event.setEnabled(true);
-
 			}
-
 		}
 
 		if (o == btns[1]) {// 회원가입

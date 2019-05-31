@@ -35,9 +35,9 @@ public class CustomerMainLogin extends JPanel {
 		card_pan.add(tabs,"tabs");
 		card_pan.add(CustomerSginUpMain,"CustomerSginUpMain");
 		card_pan.add(NcustomerSginMain,"NonSginUp");
-		card_pan.add(ManagerMode,"ManagerMode");
+		card_pan.add(ManagerMode.card_pan,"ManagerMode");
 		this.add("Center",card_pan);
-		this.setBounds(300, 300, 700, 600);
+		this.setBounds(300, 300, 300, 300);
 	}
 	public static void main(String[] args) {
 	}
