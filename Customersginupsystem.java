@@ -13,6 +13,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
@@ -29,8 +30,9 @@ public class Customersginupsystem extends JPanel implements ActionListener {
 	JRadioButton[] gender;
 	ButtonGroup group;
 	JComboBox combo, combo1;
-
+	JPasswordField pw;
 	void doIt() {
+		pw = new JPasswordField(15);
 		panel = new JPanel[9];
 		for (int i = 0; i < panel.length; i++) {
 			panel[i] = new JPanel();
@@ -60,6 +62,7 @@ public class Customersginupsystem extends JPanel implements ActionListener {
 		btns = new JButton[3];
 		for (int i = 0; i < btns.length; i++) {
 			btns[i] = new JButton(btnstitle[i]);
+			btns[i].setBackground(new Color(52, 152, 219));
 			btns[i].addActionListener(this);
 		}
 
@@ -83,14 +86,13 @@ public class Customersginupsystem extends JPanel implements ActionListener {
 		panel[0].add(btns[0]);// id
 		panel[1].add(labels[1]);
 		panel[1].add(label[1]);
-		panel[1].add(inputs[1]);// 비밀번호
+		panel[1].add(pw);// 비밀번호
 		panel[2].add(labels[2]);
 		panel[2].add(label[2]);
 		panel[2].add(inputs[2]);// 이름
 		panel[3].add(label[3]);
 		panel[3].add(inputs[3]);
 		panel[3].add(labels[3]);
-		panel[3].add(inputs[4]);
 		panel[3].add(combo1);// e-mail
 		panel[4].add(labels[4]);
 		panel[4].add(label[4]);
@@ -105,18 +107,10 @@ public class Customersginupsystem extends JPanel implements ActionListener {
 		panel[7].add(btns[2]);
 
 		for (int i = 0; i < panel.length - 1; i++) {
+			panel[i].setBackground(new Color(199, 228, 248)); 
 			centerpanel.add(panel[i]);
 			centerpanel.setLayout(new GridLayout(8, 1));
 		}
-		panel[0].setBackground(new Color(153, 255, 255));
-		panel[1].setBackground(new Color(153, 255, 255));
-		panel[2].setBackground(new Color(153, 255, 255));
-		panel[3].setBackground(new Color(153, 255, 255));
-		panel[4].setBackground(new Color(153, 255, 255));
-		panel[5].setBackground(new Color(153, 255, 255));
-		panel[6].setBackground(new Color(153, 255, 255));
-		panel[7].setBackground(new Color(153, 255, 255));
-
 	}
 
 	public Customersginupsystem(HaJinmain hm) {
@@ -128,7 +122,7 @@ public class Customersginupsystem extends JPanel implements ActionListener {
 		this.add("Center", centerpanel);
 		this.setBounds(300, 300, 700, 600);
 	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object o = e.getSource();
@@ -141,39 +135,60 @@ public class Customersginupsystem extends JPanel implements ActionListener {
 				Customer_info ci = crud.selectId(id);
 				if (ci == null) {
 					JOptionPane.showMessageDialog(hm, "사용 가능한 ID입니다.");
-				}else {
+				} else {
 					JOptionPane.showMessageDialog(hm, "중복 ID입니다.");
 				}
 			}
 		}
 		if (o == btns[1]) {
 			String customer_id = inputs[0].getText();
-			String customer_pwd = inputs[1].getText();
+			String customer_pwd = pw.getText();
 			String customer_name = inputs[2].getText();
-			String customer_email = (inputs[3].getName() + inputs[4].getText());
-			int customer_phone = Integer.valueOf((inputs[5].getText() + inputs[6].getText()));
-			String customer_gender = ""; // 성별
-			if (gender[0].isSelected() == true) {
-				customer_gender = "남성";
-			} else {
-				customer_gender = "여성";
+			if (customer_id.equals("")) {
+				JOptionPane.showMessageDialog(hm, "ID를 입력하셔야 합니다.");
 			}
-			Customer_info cust = new Customer_info();
-			cust.setCustomer_id(customer_id);
-			cust.setCustomer_pwd(customer_pwd);
-			cust.setCustomer_name(customer_name);
-			cust.setCustomer_email(customer_email);
-			cust.setCustomer_phone(customer_phone);
-			cust.setCustomer_gen(customer_gender);
-			int r = crud.insertCustomer(cust);
-			if (r > 0) {
-				JOptionPane.showMessageDialog(hm, "고객정보가 등록되었습니다.");
+			 if (customer_pwd.equals("")) {
+				JOptionPane.showMessageDialog(hm, "PWD를 입력하셔야 합니다.");
+			}
+			if (customer_name.equals("")) {
+				JOptionPane.showMessageDialog(hm, "NAME를 입력하셔야 합니다.");
+			}
+			String phone = (inputs[5].getText() + inputs[6].getText());
+			if (phone.equals("")) {
+				JOptionPane.showMessageDialog(hm, "Phone를 입력하셔야 합니다.");
 			} else {
-				JOptionPane.showMessageDialog(hm, "고객정보 등록 중 문제가 발생했습니다.");
+				String customer_email = (inputs[3].getText() + combo.getSelectedItem());
+				String customer_gender = ""; // 성별
+				if (gender[0].isSelected() == true) {
+					customer_gender = "남성";
+				} else {
+					customer_gender = "여성";
+				}
+				int customer_phone = Integer.valueOf(phone); 
+				Customer_info cust = new Customer_info();
+				cust.setCustomer_id(customer_id);
+				cust.setCustomer_pwd(customer_pwd);
+				cust.setCustomer_name(customer_name);
+				cust.setCustomer_email(customer_email);
+				cust.setCustomer_phone(customer_phone);
+				cust.setCustomer_gen(customer_gender);
+				int r = crud.insertCustomer(cust);
+				if (r > 0) {
+					JOptionPane.showMessageDialog(hm, "고객정보가 등록되었습니다.");
+				} else {
+					JOptionPane.showMessageDialog(hm, "고객정보 등록 중 문제가 발생했습니다.");
+				}
+				hm.card.show(hm.totalpanel, "loginmain");
+				hm.menu_exhibition.setEnabled(true);
+				hm.menu_goodies.setEnabled(true);
+				hm.menu_program.setEnabled(true);
+				hm.menu_event.setEnabled(true);
 			}
 		}
 
-		if (o == btns[2]) {// 취소
+		if (o == btns[2])
+
+		{// 취소
 			hm.card.show(hm.totalpanel, "image");
 			hm.btnspanel.setVisible(true);
 		}

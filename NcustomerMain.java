@@ -1,6 +1,5 @@
 package yyg;
 
-
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -10,6 +9,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -32,7 +32,7 @@ public class NcustomerMain extends JPanel implements ActionListener {
 		for (int i = 0; i < panel.length; i++) {
 			panel[i] = new JPanel();
 		}
-		String[] labeltitle = { "", "이메일", "전화번호", "" };
+		String[] labeltitle = { "", "E-Mail", "Phone", "" };
 		label = new JLabel[3];
 		for (int i = 0; i < label.length; i++) {
 			label[i] = new JLabel(labeltitle[i]);
@@ -45,54 +45,69 @@ public class NcustomerMain extends JPanel implements ActionListener {
 		btns = new JButton[2];
 		for (int i = 0; i < btns.length; i++) {
 			btns[i] = new JButton(btnstitle[i]);
+			btns[i].setBackground(new Color(52, 152, 219));
 			btns[i].addActionListener(this);
 		}
+
 		panel[0].add(label[1]);
 		panel[0].add(text[0]);
 		panel[1].add(label[2]);
 		panel[1].add(text[1]);
-		panel[2].add(btns[0]);panel[2].add(btns[1]);
-		panel[3].add(label[0]);panel[4].add(label[0]);
-		panel[5].add(label[0]);panel[6].add(label[0]);
+		panel[2].add(btns[0]);
+		panel[2].add(btns[1]);
+		panel[3].add(label[0]);
+		panel[4].add(label[0]);
+		panel[5].add(label[0]);
+		panel[6].add(label[0]);
 		panel[7].add(label[0]);
 		totalpanel.setLayout(new GridLayout(8, 1));
 		for (int i = 0; i < panel.length - 1; i++) {
+			panel[i].setBackground(new Color(199, 228, 248)); 
 			totalpanel.add(panel[i]);
 		}
-		panel[0].setBackground(new Color(153, 255, 255));
-		panel[1].setBackground(new Color(153, 255, 255));
-		panel[2].setBackground(new Color(153, 255, 255));
-		panel[3].setBackground(new Color(153, 255, 255));
-		panel[4].setBackground(new Color(153, 255, 255));
-		panel[5].setBackground(new Color(153, 255, 255));
-		panel[6].setBackground(new Color(153, 255, 255));
-		panel[7].setBackground(new Color(153, 255, 255));
-		
-		}
-		
+	}
+
 	NcustomerMain(HaJinmain hm, CustomerMainLogin CustomerMainLogin) {
-		NcustomerSginUp =NcustomerSginUp;
-		this.hm =hm;
-		this.CustomerMainLogin= CustomerMainLogin;
+		NcustomerSginUp = NcustomerSginUp;
+		this.hm = hm;
+		this.CustomerMainLogin = CustomerMainLogin;
 		card = new CardLayout();
 		HaJinLoginMain = new HaJinLoginMain(hm);
 		totalpanel = new Panel();
 		totalpanel.setLayout(card);
 		make();
 		this.add("Center", totalpanel);
+		this.setBackground(new Color(199, 228, 248)); 
 		this.setBounds(300, 300, 700, 600);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		Object o = arg0.getSource();
-		if(o == btns[0]) {//로그인
-			hm.card.show(hm.totalpanel,"loginmain");
+		if (o == btns[0]) {// 로그인
+			String email = this.text[0].getText();
+			String phone = this.text[1].getText();
+			NUserIdPwd emph = new NUserIdPwd();
+			emph.setEmail(email);
+			emph.setPhone(phone);
+			CRUDprocess crud = new CRUDprocess();
+			NCustomer_info info = crud.selectNUserIdPwd(emph);
+			if (info == null) {// 로그인 실패
+				JOptionPane.showMessageDialog(hm, "E-Mail와 Phone을 확인하세요");
+			} else {
+				JOptionPane.showMessageDialog(hm, "로그인 되었습니다.");
+				hm.card.show(hm.totalpanel, "loginmain");
+				hm.menu_exhibition.setEnabled(true);
+				hm.menu_goodies.setEnabled(false);
+				hm.menu_program.setEnabled(false);
+				hm.menu_event.setEnabled(false);
+				hm.card.show(hm.totalpanel, "loginmain");
+			}
 		}
-		
-		if(o== btns[1]) {//회원가입
+
+		if (o == btns[1]) {
 			CustomerMainLogin.card.show(CustomerMainLogin.card_pan, "NonSginUp");
 		}
-		
+
 	}
 }

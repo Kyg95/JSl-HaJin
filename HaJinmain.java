@@ -12,6 +12,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -85,6 +86,7 @@ public class HaJinmain extends JFrame implements ActionListener {
 		btns = new JButton[2];
 		for (int i = 0; i < btns.length; i++) {
 			btns[i] = new JButton(titles[i]);
+			btns[i].setBackground(new Color(52, 152, 219));
 			btns[i].setPreferredSize(new Dimension(150, 30));
 			btns[i].addActionListener(this);
 		}
@@ -92,12 +94,13 @@ public class HaJinmain extends JFrame implements ActionListener {
 		for(int i =0; i<label.length; i++) {
 			label[i] = new JLabel();
 		}
-		
+
 	}
 
 
 	CardLayout card;
 	Panel totalpanel;
+	ManagerMode mm;
 	CustomerSginUpMain CustomerSginUpMain;
 	Customersginupsystem Customersginupsystem;
 	CustomerMainLogin CustomerMainLogin;
@@ -163,6 +166,7 @@ public class HaJinmain extends JFrame implements ActionListener {
 		this.setJMenuBar(mb);
 		// 메뉴 관련 작업 끝
 		rd = new Reserve_day();
+		mm = new ManagerMode(this);
 		card = new CardLayout();
 		totalpanel = new Panel(); 
 		totalpanel.setLayout(card);
@@ -179,9 +183,11 @@ public class HaJinmain extends JFrame implements ActionListener {
 		totalpanel.add(bgi, "image");
 		totalpanel.add(hajinloginmain,"loginmain");
 		totalpanel.add(rd, "Reserve_day");
+		totalpanel.add(mm, "ManagerMode");
 		this.add("Center", totalpanel);
 		this.add("South", btnspanel);
 		this.setSize(1000, 500);
+		this.setResizable(false);
 		this.setLocation(100, 0);
 		this.setVisible(true);
 	}

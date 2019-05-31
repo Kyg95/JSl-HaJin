@@ -57,7 +57,7 @@ public class CRUDprocess {
 		SqlSession s = getSession();
 		int result = 0;
 		try {
-			result = s.insert("loginmapper.insertCustomer", ncustomer);
+			result = s.insert("loginmapper.insertNCustomer", ncustomer);
 			if (result > 0)
 				s.commit();
 			else
@@ -81,26 +81,27 @@ public class CRUDprocess {
 		} // DB의 manager_info 테이블의 id와 암호를 찾아서 리턴
 	}
 
-	
-	
-	public Customer_info selectIdPwd(UserIdPwd idpwd) { // 다른곳에서 사용해야하기떄문에 public 를 사용
+	public NCustomer_info selectNUserIdPwd(NUserIdPwd emph) {
 		SqlSession s = getSession();
 		try {
-			Customer_info info = s.selectOne("loginmapper.selectIdPwd", idpwd); // 매퍼의 쿼리 이름을 씀
-			// selectone는 검색결과가 1건일 때만 사용하는 메서드
-			// selectList는 검색결과가 여러건에 사용하는 메서드
+			NCustomer_info info = s.selectOne("loginmapper.selectNUserIdPwd", emph); 
 			return info;
-		} finally { // 예외가 발생하던 하지않던 무조건 실행함
-			s.close();// 완료될경우 닫는다
+		} finally {
+			s.close();
 
-		} // DB의 manager_info 테이블의 id와 암호를 찾아서 리턴
+		} 
 	}
 	
+	public Customer_info selectIdPwd(UserIdPwd idpwd) {
+		SqlSession s = getSession();
+		try {
+			Customer_info info = s.selectOne("loginmapper.selectIdPwd", idpwd); 
 
-	// db작성순서 mapper작성 crud소스 작성
+			return info;
+		} finally {
+			s.close();
 
+		} 
+	}
+	
 }
-// 파일 네트워크,db연동,스레드
-// 반드시 "예외처리"를 해야한다. try {파일처리 프로그렘, 네트워크프로그램 ,스레드} catch(exception A 모두가 상속하는것을
-// 씀,다형성){"안내메세지출력"}
-// 자바에서 발생하는 모든것은 객체임

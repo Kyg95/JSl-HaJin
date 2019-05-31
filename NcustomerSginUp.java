@@ -1,6 +1,5 @@
 package yyg;
 
-
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -18,7 +17,6 @@ import javax.swing.JTextField;
 
 public class NcustomerSginUp extends JPanel implements ActionListener {
 
-	
 	HaJinLoginMain HaJinLoginMain;
 	NcustomerMain NcustomerMain;
 	CustomerMainLogin CustomerMainLogin;
@@ -51,6 +49,7 @@ public class NcustomerSginUp extends JPanel implements ActionListener {
 		btns = new JButton[2];
 		for (int i = 0; i < btns.length; i++) {
 			btns[i] = new JButton(btnstitle[i]);
+			btns[i].setBackground(new Color(52, 152, 219));
 			btns[i].addActionListener(this);
 		}
 
@@ -60,22 +59,20 @@ public class NcustomerSginUp extends JPanel implements ActionListener {
 		panel[1].add(inputs[1]);
 		panel[2].add(label[2]);// 연락처
 		panel[2].add(inputs[2]);
-		panel[3].add(btns[0]); //버튼
+		panel[3].add(btns[0]); // 버튼
 		panel[3].add(btns[1]);
 
 		for (int i = 0; i < panel.length; i++) {
+			panel[i].setBackground(new Color(199, 228, 248));
 			totalpanel.add(panel[i]);
 			totalpanel.setLayout(new GridLayout(4, 1));
 		}
-		panel[0].setBackground(new Color(153, 255, 255));
-		panel[1].setBackground(new Color(153, 255, 255));
-		panel[2].setBackground(new Color(153, 255, 255));
-		panel[3].setBackground(new Color(153, 255, 255));
+
 	}
 
-	public NcustomerSginUp(HaJinmain hm, CustomerMainLogin CustomerMainLogin) {
+	public NcustomerSginUp(HaJinmain hm) {
 		this.hm = hm;
-		this.CustomerMainLogin = CustomerMainLogin;
+		CustomerMainLogin = CustomerMainLogin;
 		HaJinLoginMain HaJinLoginMain;
 		NcustomerMain NcustomerMain;
 		card = new CardLayout();
@@ -91,24 +88,33 @@ public class NcustomerSginUp extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object o = e.getSource();
 		CRUDprocess crud = new CRUDprocess();
-		if (o == btns[0]) { //가입
-			String ncustomer_name = 
-			String ncustomer_email = 
-			int ncustomer_phone = Integer.valueOf((inputs[5].getText() + inputs[6].getText()));
-			
-			NCustomer_info cust = new NCustomer_info();
-			cust.setNcustomer_name(ncustomer_name);
-			cust.setNcustomer_email(ncustomer_email);
-			cust.setNcustomer_phone(ncustomer_phone);
-			int r = crud.insertNCustomer(cust);
-			if (r > 0) {
-				JOptionPane.showMessageDialog(hm, "고객정보가 등록되었습니다.");
-			} else {
-				JOptionPane.showMessageDialog(hm, "고객정보 등록 중 문제가 발생했습니다.");
+		if (o == btns[0]) { // 가입
+			JOptionPane.showMessageDialog(hm, "비회원은 프로그램,굿즈,이벤트 등에 참여하실수 없습니다.");
+			String ncustomer_name = inputs[0].getText();
+			if (!(ncustomer_name == null)) {
+				String ncustomer_email = inputs[1].getText();
+				String phone = (inputs[2].getText());
+				if(!(phone == null));
+				int ncustomer_phone = Integer.valueOf(phone);
+				NCustomer_info cust = new NCustomer_info();
+				cust.setNcustomer_name(ncustomer_name);
+				cust.setNcustomer_email(ncustomer_email);
+				cust.setNcustomer_phone(ncustomer_phone);
+				int r = crud.insertNCustomer(cust);
+				if (r > 0) {
+					JOptionPane.showMessageDialog(hm, "비회원 가입되었습니다.");
+				} else {
+					JOptionPane.showMessageDialog(hm, "비회원 가입 중 문제가 발생했습니다.");
+				}
 			}
 		}
-			
-		if (o == btns[1]) { //취소 메인으로 돌아감
+		hm.card.show(hm.totalpanel, "loginmain");
+		hm.menu_exhibition.setEnabled(true);// 메뉴바 활성화
+		hm.menu_goodies.setEnabled(false);// 메뉴바 활성화
+		hm.menu_program.setEnabled(false);
+		hm.menu_event.setEnabled(false);
+
+		if (o == btns[1]) { // 취소 메인으로 돌아감
 			hm.card.show(hm.totalpanel, "image");
 			hm.btnspanel.setVisible(true);
 		}

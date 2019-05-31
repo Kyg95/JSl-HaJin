@@ -9,6 +9,8 @@ import javax.swing.JTabbedPane;
 
 public class CustomerMainLogin extends JPanel {
 	
+	ManagerMode ManagerMode;
+	NcustomerSginMain NcustomerSginMain;
 	NcustomerSginUp NcustomerSginUp;
 	HaJinLoginMain HaJinLoginMain;
 	CustomerMainLogin CustomerMainLogin;
@@ -24,14 +26,16 @@ public class CustomerMainLogin extends JPanel {
 		card_pan = new JPanel(card);
 		tabs = new JTabbedPane();
 		CustomerSginUpMain = new CustomerSginUpMain(hm);
-		NcustomerSginUp = new NcustomerSginUp(hm,this);
-		pan1 = new CustomerLogin(hm,this,HaJinLoginMain); 
+		NcustomerSginMain = new NcustomerSginMain(hm);
+		ManagerMode = new ManagerMode(hm);
+		pan1 = new CustomerLogin(hm,this,HaJinLoginMain,ManagerMode); 
 		pan2 = new NcustomerMain(hm,this);
 		tabs.addTab("    회           원    ", pan1);
 		tabs.addTab("    비     회     원    ", pan2);
 		card_pan.add(tabs,"tabs");
 		card_pan.add(CustomerSginUpMain,"CustomerSginUpMain");
-		card_pan.add(NcustomerSginUp,"NonSginUp");
+		card_pan.add(NcustomerSginMain,"NonSginUp");
+		card_pan.add(ManagerMode,"ManagerMode");
 		this.add("Center",card_pan);
 		this.setBounds(300, 300, 700, 600);
 	}
